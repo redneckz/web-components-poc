@@ -1,0 +1,11 @@
+rshb-input {
+  display: inline;
+}
+
+rshb-input:defined {
+  opacity: 1;
+}
+
+rshb-input:not(:defined) {
+  opacity: 0.5;
+}

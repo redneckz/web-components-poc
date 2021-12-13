@@ -1,0 +1,11 @@
+rshb-button {
+  display: inline;
+}
+
+rshb-button:defined {
+  opacity: 1;
+}
+
+rshb-button:not(:defined) {
+  opacity: 0.5;
+}

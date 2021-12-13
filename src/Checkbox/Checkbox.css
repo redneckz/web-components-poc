@@ -1,0 +1,11 @@
+rshb-checkbox {
+  display: inline;
+}
+
+rshb-checkbox:defined {
+  opacity: 1;
+}
+
+rshb-checkbox:not(:defined) {
+  opacity: 0.5;
+}
