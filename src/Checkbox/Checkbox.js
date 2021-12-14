@@ -22,11 +22,11 @@ export const Checkbox = define(
       onClick: "click"
     };
 
-    static template = memo((props) => {
-      return html`<div class="form-check">
+    static template = memo(
+      (props) => html`<div class="form-check">
         <input class="form-check-input" type="checkbox" ...${props} />
         <label for=${props.id} class="form-check-label" />
-      </div>`;
-    });
+      </div>`
+    );
   }
 );
