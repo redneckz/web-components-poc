@@ -20,11 +20,11 @@ Framework agnostic UI kit example based on [Web Components](https://developer.mo
 
 Utils:
 
-1. `src/utils/define.js` - утилита для декларация кастомного элемента
-    * встраивает *Preact* в жизненный цикл кастомного элемента
-    * реализует поддержку слотов
-2. `src/utils/reactWrapper.js` - адаптер *Web Component* => *React Component*
-3. `src/utils/html.js` - обёртка над выременной зависимостью *HTM* 
+1. `src/utils/define.js` - helper to simplify declaration of custom elements
+    * embeds *Preact* into custom element life cycle as a template engine
+    * implements *Slots* approach
+2. `src/utils/reactWrapper.js` - *Web Component* => *React Component* adapter
+3. `src/utils/html.js` - wrapper for temporal dependency *HTM*
 
 Web Components:
 
