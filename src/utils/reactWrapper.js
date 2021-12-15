@@ -14,6 +14,12 @@ export function reactWrapper(WebComponent) {
       }))
     );
 
+    useEffect(() => {
+      if (!customElements.get(WebComponent.tag)) {
+        customElements.define(WebComponent.tag, WebComponent);
+      }
+    }, []);
+
     const ref = useRef();
     useEffect(
       () => {

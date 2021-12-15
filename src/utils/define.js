@@ -17,13 +17,13 @@ export function define(WebComponent) {
       super();
       this.defineProps();
       this.slotObserver = new MutationObserver((mutationsList) => {
-        mutationsList.flatMap((_) => [..._.addedNodes]).forEach((_) => this.defineSlot(_));
+        mutationsList.flatMap((_) => [..._.addedNodes]).forEach((_) => this.initSlot(_));
       });
     }
 
     connectedCallback() {
       this.render();
-      this.defineAllSlots();
+      this.initAllSlots();
       this.slotObserver.observe(this, { childList: true });
       super.connectedCallback && super.connectedCallback();
     }
@@ -42,6 +42,9 @@ export function define(WebComponent) {
       this._props = {};
       for (const key in props) {
         const converter = props[key];
+        if (this.hasAttribute(key)) {
+          this._props[key] = converter(this.getAttribute(key));
+        }
         Object.defineProperty(this, key, {
           get() {
             return this._props[key];
@@ -54,20 +57,17 @@ export function define(WebComponent) {
       }
     }
 
-    defineAllSlots() {
-      this.querySelectorAll("[slot]").forEach((_) => this.defineSlot(_));
+    initAllSlots() {
+      this.querySelectorAll("[slot]").forEach((_) => this.initSlot(_));
     }
 
-    defineSlot(child) {
+    initSlot(child) {
       const slots = WebComponent.slots || {};
       const slotName = child.getAttribute("slot");
       if (!slotName || !slots[slotName]) return;
-      this.querySelector(slots[slotName]).replaceChildren(child);
+      const slot = this.querySelector(slots[slotName]);
+      slot?.replaceChildren(child);
     }
   };
-
-  if (!customElements.get(Component.tag)) {
-    customElements.define(Component.tag, Component);
-  }
   return Component;
 }
